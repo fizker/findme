@@ -94,6 +94,12 @@ var fs = require('fs');
 			}
 		};
 		
+		function clearEntries() {
+			data.entries = [];
+			save();
+		};
+		
+		exports.clearEntries = clearEntries;
 		exports.deleteEntry = deleteEntry;
 		exports.addEntry = addEntry;
 		exports.getEntries = getEntries;

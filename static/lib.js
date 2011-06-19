@@ -214,6 +214,16 @@ if(!Date.parseISOString)
 (function element_class() {
 	var addClass, removeClass, hasClass, prepareClassList;
 	
+	function toggleClass(className) {
+		if(this.hasClass(className)) {
+			this.removeClass(className);
+			return false;
+		} else {
+			this.addClass(className);
+			return true;
+		}
+	};
+	
 	prepareClassList = function prepareClassList() {
 		var list = [], ret = [], checkDupes = {};
 		Array.prototype.forEach.call(arguments, function(arg) {
@@ -291,6 +301,8 @@ if(!Date.parseISOString)
 			obj.removeClass = removeClass;
 		if(!obj.hasClass)
 			obj.hasClass = hasClass;
+		if(!obj.toggleClass)
+			obj.toggleClass = toggleClass;
 	});
 	
 	if(window.AJAX_TEST_DEBUG) {

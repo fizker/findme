@@ -1,0 +1,118 @@
+div {
+	position: absolute;
+}
+div.row {
+	display: block;
+	left: 0px;
+	right: 0px;
+	height: 40px;
+}
+.row > * {
+	display: inline-block;
+}
+.row.aligntop > * {
+	vertical-align: top;
+	top: 0px;
+}
+.row.alignbot > * {
+	vertical-align: bottom;
+	bottom: 0px;
+}
+
+.c-1 {
+	left: 155px;
+}
+.c-2 {
+	left: 390px;
+	right: 235px;
+}
+.c-3 {
+	right: 0px;
+}
+.c-1, .c-3 {
+	width: 230px;
+}
+.c-norm {
+	width: 75px;
+}
+.c-small {
+	width: 45px;
+}
+.corner {
+	width: 150px;
+	top: 0px;
+	bottom: 0px;
+}
+
+.menu .c-norm {
+	top: 0px;
+	bottom: 45px;
+}
+.r-1 {
+	top: 45px;
+}
+.r-2 {
+	top: 220px;
+	bottom: 175px;
+}
+.r-1, .r-3 {
+	height: 170px;
+}
+.r-3 {
+	bottom: 0px;
+}
+
+@media only screen and (orientation:landscape) {
+	.r-2 {
+		top: 160px;
+		bottom: 115px;
+	}
+	.r-1, .r-3 {
+		height: 110px;
+	}
+}
+
+.h-30 {
+	height: 30%;
+}
+.h-50 {
+	height: 50%;
+}
+
+.menu > div {
+	bottom: 0px;
+}
+
+.inverse {
+	margin: 0px;
+	background-color: black;
+	position: absolute;
+	width: 50%;
+	height: 50%;
+}
+.topleft {
+	-webkit-border-top-left-radius: 60px;
+	-moz-border-radius-topleft: 60px;
+	border-top-left-radius: 60px;
+}
+.topleft > .inverse {
+	bottom: 0px;
+	right: 0px;
+	
+	-webkit-border-top-left-radius: 60px;
+	-moz-border-radius-topleft: 60px;
+	border-top-left-radius: 60px;
+}
+.botleft {
+	-webkit-border-bottom-left-radius: 60px;
+	-moz-border-radius-bottomleft: 60px;
+	border-bottom-left-radius: 60px;
+}
+.botleft > .inverse {
+	top: 0px;
+	right: 0px;
+	
+	-webkit-border-bottom-left-radius: 60px;
+	-moz-border-radius-bottomleft: 60px;
+	border-bottom-left-radius: 60px;
+}

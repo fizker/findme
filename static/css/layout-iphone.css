@@ -1,0 +1,11 @@
+.menu {
+	height: 70px;
+}
+.body {
+	top: 75px;
+}
+
+.body > div, .menu > div {
+	/*margin: 2px;*/
+}
+

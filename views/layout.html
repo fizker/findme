@@ -4,9 +4,43 @@
 		<title>Find Me!</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport" content="width=device-width" />
+		<link href="_.css" type= "text/css" rel="stylesheet">
 	</head>
 	<body>
-		<div id="content"><%- body %></div>
+		<div class="menu">
+			<div class="orange c-norm"></div>
+			<div class="row alignbot">
+				<div class="botleft pink corner">
+					<div class="inverse"></div>
+				</div>
+				<div class="h-50 blue c-1"></div>
+				<div class="h-30 orange c-2"></div>
+				<div class="h-50 blue c-3"></div>
+			</div>
+			
+			<div class="buttons cols2">
+				<div class="button toggle col2 row1 grey">Track me!</div>
+				<div class="button col1 row1 red"><input placeholder="Enter name" type="text"/></div>
+				<div class="button toggle col2 row2 purple">Auto-start</div>
+				<div class="button toggle col1 row2 orange">Store location</div>
+			</div>
+		</div>
+		
+		<div class="body">
+			<div class="row aligntop">
+				<div class="topleft orange corner">
+					<div class="inverse"></div>
+				</div>
+				<div class="yellow h-50 c-1"></div>
+				<div class="pink h-30 c-2"></div>
+				<div class="yellow h-50 c-3"></div>
+			</div>
+			<div class="c-norm blue r-1"></div>
+			<div class="c-small yellow r-2"></div>
+			<div class="c-norm pink r-3"></div>
+				<div id="content"><%- body %></div>
+		</div>
+		
 		<%- partial('scripts')%>
 	</body>
 </html>

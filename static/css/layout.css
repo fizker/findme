@@ -1,0 +1,38 @@
+body {
+	margin: 0px;
+	padding: 0px;
+	background-color: black;
+	color: #bababa;
+	font-family: Baskerville, Palatino, Times, 'Times New Roman', serif;
+}
+
+div {
+	position: relative;
+	display: inline-block;
+}
+
+.body, .menu {
+	/*width: 990px;*/
+	margin: 0px;
+	display: block;
+	left: 0px;
+	right: 0px;
+}
+
+.menu {
+	height: 115px;
+}
+.body {
+	top: 120px;
+	bottom: 0px;
+}
+
+.body > div, .menu > div {
+	/*margin: 2px;*/
+}
+
+#content {
+	top: 45px;
+	left: 120px;
+	background:grey;
+}

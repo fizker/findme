@@ -1,0 +1,53 @@
+div.row {
+	height: 20px;
+}
+.c-1 {
+	left: 65px;
+}
+.c-2 {
+	left: 130px;
+	right: 65px;
+}
+.c-3 {
+	right: 0px;
+}
+.c-1, .c-3 {
+	width: 60px;
+}
+
+.c-norm {
+	width: 30px;
+}
+.c-small {
+	width: 20px;
+}
+.corner {
+	width: 60px;
+	top: 0px;
+	bottom: 0px;
+}
+
+.menu .c-norm {
+	bottom: 25px;
+}
+
+.r-1 {
+	height: 60px;
+	top: 25px;
+}
+.r-3 {
+	display: none;
+}
+.r-2 {
+	top: 90px;
+	bottom: 0px;
+}
+
+@media only screen and (orientation:landscape) {
+	.r-2 {
+		top: 70px;
+	}
+	.r-1, .r-3 {
+		height: 40px;
+	}
+}

@@ -1,0 +1,52 @@
+.buttons.cols1 {
+	width: 110px;
+}
+.buttons.cols2 {
+	width: 225px;
+}
+.buttons.cols3 {
+	width: 620px;
+}
+.buttons.cols4 {
+	width: 830px;
+}
+
+.button {
+	-webkit-user-select: none;
+	cursor: pointer;
+	color: black;
+	height: 16px;
+	width: 100px;
+	text-align: center;
+	font-weight: bold;
+	font-size: .8em;
+	padding: 4px 5px;
+	-webkit-border-radius: 20px;
+	-moz-border-radius: 20px;
+	border-radius: 20px;
+	position: absolute;
+}
+
+.button.active {
+	background: rgb(190, 151, 138);
+}
+
+.button.col1 {
+	left: 0px;
+}
+.button.col2 {
+	left: 115px;
+}
+.button.col3 {
+	left: 420px;
+}
+.button.col4 {
+	left: 630px;
+}
+
+.button.row1 {
+	top: 0px;
+}
+.button.row2 {
+	top: 28px;
+}

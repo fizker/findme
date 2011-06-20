@@ -1,19 +1,34 @@
 var track = (function(global) {
 	var tracking = false,
-		googleMap;
+		googleMap,
+		current;
+	
+	function geoReceived(location, error) {
+		current = {
+			name: 'You',
+			coords: {
+				lat: location.coords.latitude,
+				lng: location.coords.longitude
+			}
+		};
+		add(current);
+	};
+	geolocation.register(geoReceived);
 	
 	function start() {
 		if(tracking) {
 			return;
 		}
 		tracking = true;
-		console.log('start tracking user');
+		geolocation.request();
 	};
 	function stop() {
 		if(!tracking) {
 			return;
 		}
-		console.log('stop tracking user');
+		tracking = false;
+		remove(current);
+		current = null;
 	};
 	
 	function toggle() {

@@ -5,6 +5,18 @@ Find me! is a web-service that allows for people w/ modern smarthphones to easil
 
 The interface is an LCARS implementation, which will be instantly recognizable by any Star Trek fan. This is an attempt to translate this into proper HTML at the same time.
 
+How to get it running
+---------------------
+
+It should be really simple to get this running. You need the following things:
+* git (to get the code)
+* the code
+* node v. 0.4.5+ (to run the code)
+
+After getting the code and everything is setup, it should just be a question of running 'node server.js'. Every required node-module is bundled in the git-repo.
+
+I have not tested this though, so don't blame me if it doesn't work :P (although I would like to be notified, so I can dedicate some time to fix problems ^^).
+
 Supported browsers
 ------------------
 

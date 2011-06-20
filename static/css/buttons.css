@@ -17,9 +17,8 @@
 	width: 830px;
 }
 
-.button {
+.button, .textfield {
 	-webkit-user-select: none;
-	cursor: pointer;
 	color: black;
 	height: 20px;
 	width: 160px;
@@ -31,6 +30,16 @@
 	-moz-border-radius: 20px;
 	border-radius: 20px;
 	position: absolute;
+}
+.button {
+	cursor: pointer;
+}
+.textfield input {
+	font-size: 0.8em;
+	width: 156px;;
+	padding: 0px;
+	margin: 0px;
+	height: 16px;
 }
 
 @media not screen and (device-aspect-ratio: 3/4) {

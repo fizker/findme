@@ -90,7 +90,7 @@ var fs = require('fs');
 				return false;
 			});
 			if(index != null) {
-				data.entries.splice(index, 1);
+				return data.entries.splice(index, 1)[0];
 			}
 		};
 		

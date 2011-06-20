@@ -3,15 +3,57 @@ var track = (function(global) {
 		googleMap,
 		current;
 	
+	function setupSocketIO() {
+		var socket = new io.Socket().connect(),
+			input = $$('input[name=handle]')[0];
+		
+		socket.on('message', function socketListener(data) {
+			data = JSON.parse(data);
+			add(data);
+		});
+		socket.on('disconnect', function disconnect() {
+			input.onchange = null;
+		});
+		
+		input.onchange = function onchange() {
+			socket.send(JSON.stringify({
+				name: this.value
+			}));
+		};
+		if(input.value) {
+			input.onchange();
+		}
+	};
+	setupSocketIO();
+	
+	function getUserHandle() {
+		var input = $$('input[name=handle]')[0];
+		return input.value;
+	};
+	
+	function convertCurrentToPost() {
+		var str = 'name='+current.name;
+		if(current.coords) {
+			str += '&coords[lat]='+current.coords.lat+'&coords[lng]='+current.coords.lng;
+		}
+		return str;
+	}
 	function geoReceived(location, error) {
-		current = {
-			name: 'You',
-			coords: {
-				lat: location.coords.latitude,
-				lng: location.coords.longitude
-			}
+		if(!current.coords) {
+			googleMap.setCenter(new google.maps.LatLng(
+				location.coords.latitude, location.coords.longitude
+			));
+		}
+		current.coords = {
+			lat: location.coords.latitude,
+			lng: location.coords.longitude
 		};
 		add(current);
+		AjaxRequest('/entries/'+current.name, {
+			method: 'post', 
+			data: convertCurrentToPost(),
+			onload: function() {}
+		});
 	};
 	geolocation.register(geoReceived);
 	
@@ -19,6 +61,17 @@ var track = (function(global) {
 		if(tracking) {
 			return;
 		}
+		var handle = getUserHandle();
+		if(!handle) {
+			handle = prompt('Please enter a username');
+			if(!handle) {
+				return;
+			}
+			$$('input[name=handle]')[0].value = handle;
+		};
+		current = {
+			name: handle
+		};
 		tracking = true;
 		geolocation.request();
 	};
@@ -58,8 +111,9 @@ var track = (function(global) {
 	
 	var participants = {};
 	function add(participant) {
-		if(participants[participant.name]) {
-			remove(participant);
+		remove(participant);
+		if(!participant.coords) {
+			return;
 		}
 		participants[participant.name] = participant;
 		participant.marker = new google.maps.Marker({
@@ -71,8 +125,12 @@ var track = (function(global) {
 	};
 	function remove(participant) {
 		participant = participants[participant.name];
-		participant.marker.setMap(null);
-		delete participants[participant.name];
+		if(participant) {
+			if(participant.marker) {
+				participant.marker.setMap(null);
+			}
+			delete participants[participant.name];
+		}
 	};
 	
 	return {

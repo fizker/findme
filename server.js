@@ -1,7 +1,9 @@
 var express = require('express'),
 	app = express.createServer(),
+	socket = require('socket.io'),
 	sys = require('sys'),
-	store = require('./server/store.js');
+	store = require('./server/store.js'),
+	connections = [];
 store.load();
 
 app.use(express.bodyParser());
@@ -38,14 +40,45 @@ function setHeaderForJSON(request, response, next) {
 		}
 	});
 	app.delete('/entries/:name', setHeaderForJSON, function delete_entriesName(request, response) {
-		store.deleteEntry(request.params.name);
+		var entry = store.deleteEntry(request.params.name),
+			json;
+		delete entry.coords;
+		json = JSON.stringify(entry);
 		response.send(200);
+		connections.forEach(function notify(client) {
+			if(client.name == entry.name) {
+				return;
+			}
+			client.send(json);
+		});
 	});
 	app.post('/entries/:name', setHeaderForJSON, function post_entriesName(request, response) {
-		var entry = store.updateEntry(request.params.name, request.body);
-		response.send(JSON.stringify(entry));
+		var entry = store.updateEntry(request.params.name, request.body),
+			json = JSON.stringify(entry);
+		response.send(json);
+		connections.forEach(function notify(client) {
+			if(client.name == entry.name) {
+				return;
+			}
+			client.send(json);
+		});
 	});
 })(this, app);
 
 app.listen(8081);
 sys.puts('Server running on 8081');
+
+socket = socket.listen(app);
+socket.on('connection', function socketConnection(client) {
+	connections.push(client);
+	client.on('message', function clientMessage(data) {
+		data = JSON.parse(data);
+		if(data.name) {
+			client.name = data.name;
+		}
+	});
+	client.on('disconnect', function clientDisconnect() {
+		connections.splice(connections.indexOf(client), 1);
+	});
+});
+sys.puts('socket.io running');

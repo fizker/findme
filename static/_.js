@@ -24,21 +24,17 @@ var store = (function store(global) {
 
 (function buttonSetup() {
 	var buttons = document.body.down('.menu .buttons');
-	if(FZ.buttons.isTouchEnabled()) {
-		
-	} else {
-		buttons.down('.trackme').addEvent('onclick', function() {
-			track.toggle();
-		});
-		buttons.down('.autostart').addEvent('onclick', function() {
-			store.set('autostart', !store.get('autostart'));
-			track.start();
-			buttons.down('.trackme').toggleOn();
-		});
-		buttons.down('.storeloc').addEvent('onclick', function() {
-			track.storeLocation();
-		});
-	}
+	buttons.down('.trackme').addEvent('onclick', function() {
+		track.toggle();
+	});
+	buttons.down('.autostart').addEvent('onclick', function() {
+		store.set('autostart', !store.get('autostart'));
+		track.start();
+		buttons.down('.trackme').toggleOn();
+	});
+	buttons.down('.storeloc').addEvent('onclick', function() {
+		track.storeLocation();
+	});
 	
 	if(store.get('autostart')) {
 		buttons.down('.autostart').toggle();

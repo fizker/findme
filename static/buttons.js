@@ -48,15 +48,16 @@ FZ.buttons = (function() {
 				} else {
 					this.addClass('active');
 				}
-				e.preventDefault();
+				e.stopPropagation();
 			};
 			button.ontouchmove = function(e) {
-				e.preventDefault();
+				e.stopPropagation();
 			};
-			button.ontouchend = function() {
+			button.ontouchend = function(e) {
 				if(!this.hasClass('toggle')) {
 					this.removeClass('active');
 				}
+				e.stopPropagation();
 			};
 		} else {
 			button.onclick = function() {

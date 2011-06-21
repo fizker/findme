@@ -1,13 +1,17 @@
 FZ.touch.scroll($('content'));
 
 var store = (function store(global) {
-	var data = JSON.parse(global.localStorage.getItem('findme')) || {};
+	var data = JSON.parse(global.localStorage.getItem('findme')) || {},
+		dirty = false;
 	
 	function save() {
-		global.localStorage.setItem('findme', JSON.stringify(data));
+		if(dirty) {
+			global.localStorage.setItem('findme', JSON.stringify(data));
+		}
 	};
 	
 	function set(key, value) {
+		dirty = true;
 		data[key] = value;
 		save();
 	};
@@ -23,7 +27,13 @@ var store = (function store(global) {
 })(this);
 
 (function buttonSetup() {
-	var buttons = document.body.down('.menu .buttons');
+	var buttons = document.body.down('.menu .buttons'),
+		name = store.get('name');
+	
+	if(name) {
+		buttons.down('input[name=handle]').value = name;
+	}
+	
 	buttons.down('.trackme').addEvent('onclick', function() {
 		track.toggle();
 	});

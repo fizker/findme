@@ -16,6 +16,7 @@ var track = (function(global) {
 		});
 		
 		input.onchange = function onchange() {
+			store.set('name', this.value);
 			socket.send(JSON.stringify({
 				name: this.value
 			}));
@@ -28,6 +29,7 @@ var track = (function(global) {
 	
 	function getUserHandle() {
 		var input = $$('input[name=handle]')[0];
+		store.set('name', input.value);
 		return input.value;
 	};
 	
